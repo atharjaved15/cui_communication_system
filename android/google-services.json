@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "551608936535",
+    "project_id": "cui-communication-system",
+    "storage_bucket": "cui-communication-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551608936535:android:09943d5ccf70f9fe3f1b12",
+        "android_client_info": {
+          "package_name": "com.example.cui_communication_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551608936535-hao00ktjh58r0jpj5ssqtkrcvib6067c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB9y19XXWFbLxouefKi5MH32bXcTizpx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551608936535-hao00ktjh58r0jpj5ssqtkrcvib6067c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
