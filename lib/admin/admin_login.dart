@@ -1,6 +1,7 @@
 import 'package:cui_communication_system/admin/admin_landing.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../values.dart';
 
@@ -11,11 +12,12 @@ class adminLogin extends StatefulWidget {
 
 class _adminLoginState extends State<adminLogin> {
   String name,pass;
-  TextEditingController uNameController , passController;
+  TextEditingController uNameController = new TextEditingController();
+  TextEditingController passController = new TextEditingController();
   int check=0;
   void getValues(){
-    name=uNameController.toString();
-    pass = passController.toString();
+    name = uNameController.text.toString();
+    pass = passController.text.toString();
   }
   @override
   Widget build(BuildContext context) {
@@ -89,7 +91,13 @@ class _adminLoginState extends State<adminLogin> {
                       MaterialButton(
                         onPressed: (){
                           getValues();
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => adminLanding()));
+                              if(name == 'admin' && pass == 'admin')
+                                {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => adminLanding()));
+                                }
+                              else{
+                                Fluttertoast.showToast(msg: 'Password or UserName Incorrect');
+                              }
                         },
                         height: MediaQuery.of(context).size.height * 0.04,
                         minWidth: MediaQuery.of(context).size.width *0.9,
