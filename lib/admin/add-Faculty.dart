@@ -79,8 +79,15 @@ class _addFacultyState extends State<addFaculty> {
 
   Future registerUser() async {
     Firebase.initializeApp();
-    UserCredential user = await _auth.createUserWithEmailAndPassword(email: email, password: pass);
-    return user;
+    try{
+      UserCredential user = await _auth.createUserWithEmailAndPassword(email: email, password: pass);
+      return user;
+    }
+    catch(e){
+      Fluttertoast.showToast(msg: e.toString());
+
+    }
+
   }
 
   toast(UserCredential user){

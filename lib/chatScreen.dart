@@ -69,24 +69,26 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                     );
                   }
-                  List<DocumentSnapshot> docs = snapshot.data.docs;
-                  List<Widget> messages = docs.where((element) =>
-                  (element['senderID'] == widget.senderId &&
-                      element['receiverID'] == widget.receiverId) ||
-                      (element['receiverID'] == widget.senderId &&
-                          element['senderID'] == widget.receiverId),
-                  )
-                      .map((doc)=> Message(
-                    user: doc['userName'],
-                    text: doc['messageBody'],
-                    timestamp: doc['timeStamp'],
-                    mine: userName == doc['userName'],
-                  ))
-                      .toList();
-                  return ListView(
-                    controller: scrollController,
-                    children: messages,
-                  );
+                  else{
+                    List<DocumentSnapshot> docs = snapshot.data.docs;
+                    List<Widget> messages = docs.where((element) =>
+                    ((element['senderID'] == widget.senderId &&
+                        element['receiverID'] == widget.receiverId) ||
+                        (element['receiverID'] == widget.senderId &&
+                            element['senderID'] == widget.receiverId)),
+                    ).map((doc)=> Message(
+                      user: doc['userName'],
+                      text: doc['messageBody'],
+                      timestamp: doc['timeStamp'],
+                      mine: userName == doc['userName'],
+                    )).toList();
+
+                    return ListView(
+                      controller: scrollController,
+                      children: messages,
+                    );
+                  }
+
 
                 }),
             ),
@@ -147,5 +149,38 @@ class _ChatScreenState extends State<ChatScreen> {
       scrollController.animateTo(scrollController.position.maxScrollExtent,
           duration: Duration(milliseconds: 300), curve: Curves.easeOut);
     }
+  }
+  Widget messageRequest(){
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.7,
+      color: Colors.grey[800],
+      child: Column(
+        children: [
+          Text('You have got a Message Request' , style: TextStyle(color: Colors.white),),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MaterialButton(
+                  color: Colors.red[800],
+                  minWidth: MediaQuery.of(context).size.width * 0.35,
+                  child: Center(
+                    child: Text('Decline' , style: TextStyle(color: Colors.white),),
+                  ),
+                ),
+                MaterialButton(
+                  color: Colors.green[800],
+                  minWidth: MediaQuery.of(context).size.width * 0.35,
+                  child: Center(
+                    child: Text('Accept' , style: TextStyle(color: Colors.white),),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
